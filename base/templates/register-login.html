@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+<html>
+    <body>
+        {% block content %}
+        
+       <div>
+        <fieldset>
+            <legend>
+                User Login
+            </legend>    
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <label for="">Username</label>
+                    <input type="text" name="username" placeholder="Enter username"><br><br>
+                    <label for="">Password</label>
+                    <input type="password" name="password" placeholder="Enter password"><br><br>
+        
+                    <button type="submit">Login</button>
+        
+        
+                </form>
+                <h5>Don't have an account? <a href="{% url 'register' %}">Register</a> </h5>        
+            
+        </fieldset>
+       </div>
+
+                  
+        {% endblock %}
+    </body>
+</html>

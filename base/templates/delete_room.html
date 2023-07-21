@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+<html>
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete '{{obj}}'?</p>
+
+    <button type="submit">Confirm</button>
+</form>
+
+{% endblock %}
+</html>

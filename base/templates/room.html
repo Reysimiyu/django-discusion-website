@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+
+<html>
+
+
+{% block content %}
+
+<style>
+    .comment-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 30px;
+    }
+
+</style>
+
+<div class="comment-container">
+
+    <div>
+
+        <h2> {{ room.name }}</h2>
+       <p>{{ room.description }}</p>  
+
+
+        <h2>Conversations</h2>
+        <hr>
+        {% for message in room_messages %}
+
+        {% if request.user == message.user %}
+
+        <p><a href="{% url 'delete-message' message.pk %}">Delete</a></p>
+
+        {% endif %}
+
+        <p>@{{ message.user }}--{{ message.created|timesince }} ago</p>
+
+        <p>{{ message.body }}</p>
+
+        <hr>
+
+        {% endfor %}
+
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="textarea" name="body" placeholder="write your message here....">
+
+            <input type="submit" value="Send">
+        </form>
+    </div>
+
+
+
+    <div class="participants">
+        <h2>Participants</h2>
+        <hr>
+        {% for user in  participants %}
+
+        <h4>@{{ user.username }}</h4>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+</html>
